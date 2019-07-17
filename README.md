@@ -212,6 +212,8 @@ Plugins for other kexts should always come after the main kext. Lilu plugins- af
 
 **LegacySchema** Used for assigning nvram variable on such systems. 
 
+https://github.com/MacProDude/Emulated-NVRAM
+
 ![NVRAM](https://i.imgur.com/aQp4Ya2.png)
 
 # Platforminfo
