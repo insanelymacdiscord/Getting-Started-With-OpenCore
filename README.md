@@ -13,7 +13,7 @@ OpenCore is an alternative bootloader to CloverEFI or Chameleon. It is not only 
 
 * Z97 based systems require pure UEFI mode for booting (also known as Windows 8/10 mode).
 * Z390 based systems require workarounds to non working NVRAM.
-* Certain kexts must be injected in the correct order or they will not function. VoodooPS2 for example.
+* Certain kexts must be injected in the correct order or they will not function properly. 
 * NVMe issues if set as a SATA device in BIOS.
 * Some motherboards may not allow boot ordering such as bless (X299, Z390).
 * If some motherboards fail to boot Bootcamp from NVMe you must change the slot.
@@ -36,7 +36,7 @@ Requirements:
 
 # Creating the USB
 
-Creating the USB is simple, format a stick as MacOS Journaled with GUID partition map. There is no real size requirement for the USB as OpenCore's entire EFI is less than 5MB.
+Creating the USB is simple, format a USB stick (any size will suffice) as MacOS Journaled with GUID partition map. 
 
 ![Formatting the USB](https://i.imgur.com/pvoewuT.png)
 
@@ -44,7 +44,7 @@ Next we'll want to mount the EFI partition on the USB with either diskutil termi
 
 ![mountEFI](https://i.imgur.com/yCWBGoJ.png)
 
-You'll notice that once we open the EFI partition, it's empty.
+By default, the EFI partition will be empty.
 
 ![Empty EFI partition](https://i.imgur.com/4iLK9Gd.png)
 
@@ -204,7 +204,7 @@ Plugins for other kexts should always come after the main kext. Lilu plugins- af
 
 **Add**: 4D1EDE05-38C7-4A6A-9CC6-4BCCA8B38C14 (System Integrity Protection bitmask)
 * UIScale : NVRAM variable may need to be set to 02 to enable HiDPI scaling in FileVault 2 UEFI password interface and boot screen logo. but using a 10, you can see the big apple logo with HiDPI. Most use 10, 02, 01(it just up to you).
-* This will fail when console handle has no GOP protocol. When the firmware does not provide it, it can be added with ProvideConsoleGop UEFI quirk set to 'true'.
+* This will fail when console handle has no GOP protocol. When the firmware does not provide it, it can be added with ProvideConsoleGop UEFI quirk set to 'YES´and in protocols section ´ConsoleControl´to YES.
 
 **Block**: Forcibly rewrites NVRAM variables, not needed for us as `sudo nvram` is prefered but useful for those edge cases.
 
@@ -216,7 +216,7 @@ Plugins for other kexts should always come after the main kext. Lilu plugins- af
 
 # Platforminfo
 
-**Automatic**: NO
+**Automatic**: NO (setting YES will provide default values, which in some cases may be acceptable)
 
 **Generic**:
 
@@ -276,7 +276,7 @@ Fill all these fields to match your clover smbios
 
 ![AboutThisMac](https://i.imgur.com/CKAzhfN.png)
 
-# Making Opencore your Main Bootloader
+# Making Opencore your default Bootloader
 
 When you are happy opencore boots your system correctly, simply mount your Clover efi partition, (back it up somewhere safe) and overwrite it with your OpenCore one. Certain system BIOS may require you to manually remove Clover as an EFI boot option (and extra special system might need a factory reset to permanently remove it).
 
