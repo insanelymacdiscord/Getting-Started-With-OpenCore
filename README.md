@@ -28,6 +28,7 @@ Requirements:
 * [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases)
 * [Lilu](https://github.com/acidanthera/Lilu/releases)
 * [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases) *FakeSMC is (in this guide) not recommended.*
+* [Emulated-NVRAM](https://github.com/MacProDude/Emulated-NVRAM) *For emulated Nvram if you have nvram issues.*
 * Xcode (or other plist editor) to edit .plist files.
 * USB drive formatted as MacOS Journaled with GUID partition map. This is to test opencore without overwriting your working Clover.
 * Knowledge of how a hackintosh works and what files yours requires.
