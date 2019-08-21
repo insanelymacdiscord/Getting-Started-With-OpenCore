@@ -506,6 +506,9 @@ iMac19,1 | C02ZW3YFJV3Q | C02952301GULNV9UE
 * **SanitiseClearScreen:** (Fixes High resolutions displays that display OpenCore in 1024x768) Also necessary on select AMD GPUs on Z370.
 * **AvoidHighAlloc:** (This is a workaround for select board firmwares, namely GA-Z77P-D3 (rev. 1.1), failing, Also may help to boot online recovery images (*.DMG Files)
 to properly access higher memory in UEFI Boot Services. Not recommended unless required) **Only for 0.0.4 Config.plist**
+* **ClearScreenOnModeSwitch:** Some firmwares clear only part of screen when switching from graphics to text mode, leaving a fragment of previously drawn image visible. This option fills the entire graphics screen with black color before switching to text mode. **Note: ConsoleControl should be set to true for this to work.**
+* **ReplaceTabWithSpace:** Some firmwares do not print tab characters or even everything that follows them, causing difficulties or inability to use the UEFI Shell builtin text editor to edit property lists and other documents.
+This option makes the console output spaces instead of tabs. **Note: ConsoleControl may need to be set to true for this to work.**
 
 
 
