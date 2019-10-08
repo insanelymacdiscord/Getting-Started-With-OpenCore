@@ -79,7 +79,6 @@ To setup OpenCore’s folder structure, copy the files from OpenCorePkg so your 
    |   |   |--Drivers
    |   |   |   |--ApfsDriverLoader.efi
    |   |   |   |--AppleGenericInput.efi
-   |   |   |   |--AppleUiSupport.efi
    |   |   |   |--FWRuntimeServices.efi
    |   |   |   |--UsbKbDxe.efi
    |   |   |   |--VBoxHfs.efi
@@ -96,7 +95,6 @@ To setup OpenCore’s folder structure, copy the files from OpenCorePkg so your 
    |   |   |   |--WhateverGreen.kext
    |   |   |--OpenCore.efi
    |   |   |--Tools
-   |   |   |   |--CleanNvram.efi
    |   |   |   |--Shell.efi
    |   |   |   |--VerifyMsrE2.efi
 
@@ -169,7 +167,7 @@ originally implemented as a part of AptioMemoryFix.efi, which is no longer maint
 - Above 4G Decoding or similar enabled in firmware settings if present. Note, that on some motherboards (notably ASUS WS-X299-PRO) this option causes adverse effects, and must be disabled. While no other motherboards with the same issue are known, consider this option to be first to check if you have erratic boot failures.
 - DisableIoMapper quirk enabled, or VT-d disabled in firmware settings if present, or ACPI DMAR table dropped.
 - No ‘slide‘ boot argument present in NVRAM or anywhere else. It is not necessary unless you cannot boot at all or see No slide values are usable! Use custom slide! message in the log.
-- CFG Lock (MSR 0xE2 write protection) disabled in firmware settings if present. Cconsider patching it if you have enough skills and no option is available. See VerifyMsrE2 nots for more details.
+- CFG Lock (MSR 0xE2 write protection) disabled in firmware settings if present. Consider patching it if you have enough skills and no option is available. See VerifyMsrE2 nots for more details.
 - CSM (Compatibility Support Module) disabled in firmware settings if present. You may need to flash GOP ROM on NVIDIA 6xx/AMD 2xx or older. Use GopUpdate or AMD UEFI GOP MAKER in case you are not sure how.
 - EHCI/XHCI Hand-off enabled in firmware settings only if boot stalls unless USB devices are disconnected.
 - VT-x, Hyper Threading, Execute Disable Bit enabled in firmware settings if present.
