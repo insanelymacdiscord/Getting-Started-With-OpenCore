@@ -79,7 +79,6 @@ To setup OpenCore’s folder structure, copy the files from OpenCorePkg so your 
    |   |   |--Drivers
    |   |   |   |--ApfsDriverLoader.efi
    |   |   |   |--AppleGenericInput.efi
-   |   |   |   |--AppleUiSupport.efi
    |   |   |   |--FWRuntimeServices.efi
    |   |   |   |--UsbKbDxe.efi
    |   |   |   |--VBoxHfs.efi
@@ -96,7 +95,6 @@ To setup OpenCore’s folder structure, copy the files from OpenCorePkg so your 
    |   |   |   |--WhateverGreen.kext
    |   |   |--OpenCore.efi
    |   |   |--Tools
-   |   |   |   |--CleanNvram.efi
    |   |   |   |--Shell.efi
    |   |   |   |--VerifyMsrE2.efi
 
