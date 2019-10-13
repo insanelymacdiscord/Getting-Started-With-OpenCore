@@ -214,6 +214,11 @@ operating system for security reasons. ```Default=YES```
 **ShrinkMemoryMap** : Select firmwares have very large memory maps, which do not fit Apple kernel, permitting up to 64 slots for
 runtime memory. This quirk attempts to unify contiguous slots of similar types to prevent boot failures. ```Default=NO```
 
+**DevirtualiseMmio** : This option reduces stolen memory footprint from the memory map by removing runtime bit for known memory regions. This quirk may result in the increase of KASLR slides available, but is not necessarily compatible with the target board. This option is generally useful on ```APTIO V firmwares (Broadwell and newer)```.
+
+**DisableSingleUser** : This is a security option allowing one to restrict single user mode usage by ignoring ```CMD+S hotkey``` and ```-s``` boot argument. The behaviour with this quirk enabled is supposed to match ```T2-based model``` behaviour. Read this article to understand how to use single user mode with this quirk enabled.
+
+
 # Fixing Certain NVRAM Issues
 
 
