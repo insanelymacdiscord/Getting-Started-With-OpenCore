@@ -493,6 +493,38 @@ iMac19,1 | C02ZW3YFJV3Q | C02952301GULNV9UE
 
 * **Drivers**: Add your .efi drivers here. (HFSPlus, AptoMemoryFix, APFSLoader, etc)
 
+* **Input** 
+1. KeyForgetThreshold : Remove key unless it was submitted during this timeout in milliseconds.
+* AppleKeyMapAggregator protocol is supposed to contain a fixed length buffer of currently pressed keys. However, the majority of the drivers only report key presses as interrupts and pressing and holding the key on the keyboard results in subsequent submissions of this key with some defined time interval. As a result we use a timeout to remove once pressed keys from the buffer once the timeout expires and no new submission of this key happened.
+This option allows to set this timeout based on your platform. The recommended value that works on the majority of the platforms is 5 milliseconds. For reference, holding one key on VMware will repeat it roughly every 2 milliseconds and the same value for APTIO V is 3-4 milliseconds. Thus it is possible to set a slightly lower value on faster platforms and slightly higher value on slower platforms for more responsive input.
+
+2. KeyMergeThreshold : Assume simultaneous combination for keys submitted within this timeout in milliseconds.
+* Similarly to KeyForgetThreshold, this option works around the sequential nature of key submission. To be able to recognise simultaneously pressed keys in the situation when all keys arrive sequentially, we are required to set a timeout within which we assume the keys were pressed together.
+Holding multiple keys results in reports every 2 and 1 milliseconds for VMware and APTIO V respectively. Pressing keys one after the other results in delays of at least 6 and 10 milliseconds for the same platforms. The recommended value for this option is 2 milliseconds, but it may be decreased for faster platforms and increased for slower.
+
+3. KeySupport : Enable internal keyboard input translation to AppleKeyMapAggregator protocol.
+* This option activates the internal keyboard interceptor driver, based on AppleGenericInput aka AptioIntputFix), to fill AppleKeyMapAggregator database for input functioning. In case a separate driver is used, such as UsbKbDxe, this option should never be enabled.
+
+4. KeySupportMode : Set internal keyboard input translation to AppleKeyMapAggregator protocol mode.
+* **Auto** : Performs automatic choice as available with the following preference: AMI, V2, V1. 
+* **V1** : Uses UEFI standard legacy input protocol EFI_SIMPLE_TEXT_INPUT_PROTOCOL.
+* **V2** : Uses UEFI standard modern input protocol EFI_SIMPLE_TEXT_INPUT_EX_PROTOCOL. 
+* **AMI** : Uses APTIO input protocol AMI_EFIKEYCODE_PROTOCOL.
+
+5. KeySwap : Swap Command and Option keys during submission.
+* This option may be useful for keyboard layouts with Option key situated to the right of Command key.
+
+6. PointerSupport : Enable internal pointer driver.
+* This option implements standard UEFI pointer protocol (EFI_SIMPLE_POINTER_PROTOCOL) through select OEM protocols. The option may be useful on Z87 ASUS boards, where EFI_SIMPLE_POINTER_PROTOCOL is broken.
+
+7. PointerSupportMode : Set OEM protocol used for internal pointer driver.
+* Currently the only supported variant is ASUS, using specialised protocol available on select Z87 and Z97 ASUS boards. More details can be found in [LongSoft/UefiTool#116](https://github.com/LongSoft/UEFITool/pull/116).
+
+8. TimerResolution : Set architecture timer resolution.
+* This option allows to update firmware architecture timer period with the specified value in 100 nanosecond units. Setting a lower value generally improves performance and responsiveness of the interface and input handling.
+The recommended value is 50000 (5 milliseconds) or slightly higher. ASUS boards use 60000 for the interface. Apple boards use 100000.
+
+
 * **Protocols**:
 
 * **AppleBootPolicy:** (Ensures APFS compatibility on VMs or legacy Macs).
