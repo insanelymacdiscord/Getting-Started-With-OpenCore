@@ -108,7 +108,7 @@ Place necessary .efi drivers from AppleSupportPkg and AptioFixPkg into the *driv
 
 While sharing the name, the config.plist in OpenCore, is very different from Clover config.plist, they **cannot** be mixed and matched. It is also not recommended to duplicate every patch and option from your clover config. 
 
-First, duplicate the `sample.plist`, rename it to `config.plist` and open in your .plist editor of choice.
+First, duplicate the `sample.plist` (found in OpenCorePks's Doc directory), rename it to `config.plist` and open in your .plist editor of choice.
 
 
 The config contains a number of sections:
